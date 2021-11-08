@@ -38,6 +38,9 @@ namespace BlogsConsole
                         throw;
                     }
                 }
+
+
+                else if(input == "2"){
                 // Create and save a new Blog
                 Console.Write("Enter a name for a new Blog: ");
                 var name = Console.ReadLine();
@@ -56,11 +59,12 @@ namespace BlogsConsole
                 {
                     Console.WriteLine(item.Name);
                 }
-            }
+            }}
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
             }
+
 
             logger.Info("Program ended");
         }
