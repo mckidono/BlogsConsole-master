@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BlogsConsole
 {
@@ -8,6 +10,9 @@ namespace BlogsConsole
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
 
+        public List<Blog> DisplayBlogs(){
+            return Blogs.ToList();
+        }
         public void AddBlog(Blog blog)
         {
             this.Blogs.Add(blog);

@@ -1,7 +1,8 @@
 ﻿using System;
-using NLog.Web;
 using System.IO;
 using System.Linq;
+using NLog;
+using NLog.Web;
 
 namespace BlogsConsole
 {
@@ -24,9 +25,17 @@ namespace BlogsConsole
                 String input=  Console.ReadLine();
                 if(input=="1"){
                     try{
+                        var database= new BloggingContext();
+                        new Post();
 
+                        foreach(var Blog in database.DisplayBlogs()){
+                            System.Console.Write($"ID>   {Blog.BlogId}");
+                            System.Console.Write($"Name> {Blog.BlogId}");
+                        }
                     }catch(Exception e){
-                        
+                        logger.Error(e);
+                        Console.WriteLine(e);
+                        throw;
                     }
                 }
                 // Create and save a new Blog
