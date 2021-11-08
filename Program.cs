@@ -16,6 +16,19 @@ namespace BlogsConsole
             try
             {
 
+                System.Console.WriteLine("1) Display blogs");
+                System.Console.WriteLine("2) Add Blog");
+                System.Console.WriteLine("3) Display posts");
+                System.Console.WriteLine("4) Add Post");
+
+                String input=  Console.ReadLine();
+                if(input=="1"){
+                    try{
+
+                    }catch(Exception e){
+                        
+                    }
+                }
                 // Create and save a new Blog
                 Console.Write("Enter a name for a new Blog: ");
                 var name = Console.ReadLine();
