@@ -18,6 +18,10 @@ namespace BlogsConsole
             this.Blogs.Add(blog);
             this.SaveChanges();
         }
+         public void AddPost(Post post){
+             Posts.Add(post);
+             SaveChanges();
+         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

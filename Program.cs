@@ -41,25 +41,54 @@ namespace BlogsConsole
 
 
                 else if(input == "2"){
-                // Create and save a new Blog
-                Console.Write("Enter a name for a new Blog: ");
-                var name = Console.ReadLine();
+                    // Create and save a new Blog
+                    Console.Write("Enter a name for a new Blog: ");
+                    var name = Console.ReadLine();
 
-                var blog = new Blog { Name = name };
+                    var blog = new Blog { Name = name };
 
-                var db = new BloggingContext();
-                db.AddBlog(blog);
-                logger.Info("Blog added - {name}", name);
+                    var db = new BloggingContext();
+                    db.AddBlog(blog);
+                    logger.Info("Blog added - {name}", name);
 
-                // Display all Blogs from the database
-                var query = db.Blogs.OrderBy(b => b.Name);
+                    // Display all Blogs from the database
+                    var query = db.Blogs.OrderBy(b => b.Name);
 
-                Console.WriteLine("All blogs in the database:");
-                foreach (var item in query)
-                {
-                    Console.WriteLine(item.Name);
+                    Console.WriteLine("All blogs in the database:");
+                    foreach (var item in query)
+                    {
+                        Console.WriteLine(item.Name);
+                    }
                 }
-            }}
+
+
+                else if(input == "4"){
+                    System.Console.WriteLine("ID> ");
+                    int blogId = Console.Read();
+
+                    System.Console.WriteLine("Title> ");
+                    var postTitle = Console.ReadLine();
+
+                    System.Console.WriteLine("Content> ");
+                    var Content = Console.ReadLine();
+
+                    try{
+                        var Blog = new Blog {BlogId = blogId};
+
+                        var post = new Post {BlogId = Blog.BlogId, Content = Content, Title = postTitle};
+
+                        var database = new BloggingContext();
+                        new Post();
+
+                        database.AddPost(post);
+                    }catch(Exception e){
+                        logger.Error(e);
+                        System.Console.WriteLine(e);
+                        throw;
+                    }
+                }
+
+            }
             catch (Exception ex)
             {
                 logger.Error(ex.Message);
