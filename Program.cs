@@ -60,7 +60,40 @@ namespace BlogsConsole
                         Console.WriteLine(item.Name);
                     }
                 }
+                else if(input == "3"){
+                    Console.WriteLine("Enter BlogId to display posts from: ");
+                    
+                    int blogId = Console.Read();
 
+                    try
+                    {
+                        var db = new BloggingContext();
+
+                        new Post();
+
+                        db.FindPosts(blogId);
+
+                        var count = 0;
+                        foreach (var post in db.FindPosts(blogId))
+                        {
+                            if (count == 0) Console.WriteLine($"BlogId: {post.Blog.BlogId}  Name: {post.Blog.Name}");
+
+                            Console.WriteLine($"ID: {post.PostId}");
+                            Console.WriteLine($"Title: {post.Title}");
+                            Console.WriteLine($"Content: {post.Content}");
+
+                            count++;
+                        }
+
+                        Console.WriteLine($"Post(s): {count}");
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e);
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                }
 
                 else if(input == "4"){
                     System.Console.WriteLine("ID> ");
